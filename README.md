@@ -1,17 +1,92 @@
-# the_best_todo
+# Todo App
 
-A new Flutter project.
+A modern and lightweight Todo application built with Flutter, featuring local data persistence, state management with Riverpod, and support for both Light and Dark themes.
+
+## Features
+
+* ✅ Create, edit, and delete tasks
+* 📌 Mark tasks as completed
+* 💾 Offline-first local storage using Drift
+* ⚡ Reactive state management with Riverpod
+* 🌙 Dark Mode support
+* ☀️ Light Mode support
+* 🎨 Clean and responsive UI
+* 📱 Cross-platform Flutter application
+
+## Tech Stack
+
+* Flutter
+* Riverpod
+* Drift (SQLite)
+* Material Design 3
+
+## Screenshots
+
+| Light Theme         | Dark Theme          |
+| ------------------- | ------------------- |
+| Add screenshot here | Add screenshot here |
+
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+### Prerequisites
 
-A few resources to get you started if this is your first Flutter project:
+* Flutter SDK
+* Dart SDK
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+### Installation
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Clone the repository
+
+```bash
+git clone https://github.com/mr-command/todoApp.git
+```
+
+2. Navigate to the project directory
+
+```bash
+cd todoApp
+```
+
+3. Install dependencies
+
+```bash
+flutter pub get
+```
+
+4. Run the application
+
+```bash
+flutter run
+```
+
+## State Management
+
+This project uses Riverpod for scalable and maintainable state management.
+
+## Local Database
+
+Drift is used as the local database layer, providing:
+
+* Type-safe SQL queries
+* Reactive UI
+* SQLite persistence
+* Code generation support
+
+## Theme Support
+
+The application automatically supports:
+
+* Light Theme
+* Dark Theme
+* System Theme Mode
+
+## Future Improvements
+
+* Task categories
+* Due dates
+* Task search
+* Task filtering
+* Backup & restore
+* Notifications
+
