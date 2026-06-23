@@ -24,7 +24,7 @@ A modern and lightweight Todo application built with Flutter, featuring local da
 
 | Light Theme         | Dark Theme          |
 | ------------------- | ------------------- |
-| Add screenshot here | Add screenshot here |
+| ![Light Theme](screenshots/lightTheme.png) | ![Dark Theme](screenshots/darkTheme.png) |
 
 
 ## Getting Started
