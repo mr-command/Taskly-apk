@@ -1,0 +1,134 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
+// import 'package:hive_ce_flutter/hive_flutter.dart';
+import 'package:the_best_todo/components/buttons.dart';
+import 'package:the_best_todo/components/text_styles.dart';
+// import 'package:the_best_todo/core/HiveDataBase.dart';
+import 'package:the_best_todo/core/providers.dart';
+import 'package:the_best_todo/screens/AllTasks.dart';
+import 'package:the_best_todo/screens/AnimatedScreen.dart';
+import 'package:the_best_todo/screens/DoneTasks.dart';
+import 'package:the_best_todo/screens/NoteScreen.dart';
+import 'package:the_best_todo/screens/PendedTasks.dart';
+
+
+class Todoscreen extends ConsumerWidget {
+  const Todoscreen({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+
+    ThemeMode themeMode = ref.watch(isDarkModeProvider);
+    // final tasksAsync = ref.watch(tasksProvider);
+    final index = ref.watch(indexingScreens);
+
+    // final pendedTasks = ref.watch(pendingTasksProvider);
+    // final completedTasks = ref.watch(completedTasksProvider);
+    // final allTasks = ref.watch(tasksProvider);
+    // final screensState = ref.watch(screensListProvider);
+
+    List<Widget> screens = [
+      Pended(),
+      All(),
+      Done(),
+      Notescreen(),
+    ];
+
+    // ref.read(screensListProvider.notifier).state = screens;
+
+
+    return Scaffold(
+      appBar: AppBar(
+        
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text("Taskly",style: mainHeaderTextStyle(context),),
+            toggleButton(themeMode, ref,context)
+          ],
+        ),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+      ),
+      body: Container(
+        padding: EdgeInsets.only(top: 25),
+        color: Theme.of(context).colorScheme.primary,
+        child: Container(
+          padding: EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(topLeft: Radius.circular(40),topRight: Radius.circular(40)),
+            color: Theme.of(context).scaffoldBackgroundColor
+            
+          ),
+          child: screens[index]
+        ),
+      ),
+      bottomNavigationBar: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width * 0.82,
+            // height: 60,
+            padding: EdgeInsets.all(10),
+            child: ClipRRect(
+              borderRadius: BorderRadiusGeometry.circular(20),
+              child: GNav(
+                
+                activeColor: Theme.of(context).colorScheme.onSurface,
+                color: Theme.of(context).colorScheme.surface,
+                tabBorderRadius: 40,
+                backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+                tabMargin: EdgeInsetsGeometry.only(left:10, right: 10),
+                onTabChange: (value) {
+                  ref.read(indexingScreens.notifier).state = value;
+                  // ref.read(screensListProvider.notifier).state = screens;
+                  // if (pendedTasks.isEmpty) {
+                  //   screensState[0] = AnimatedScreen();
+                  //   // ref.read(screensListProvider.notifier).state = screens;
+                  // }
+                  // else if(pendedTasks.isEmpty && completedTasks.isEmpty){
+                  //   screensState[1] = AnimatedScreen();
+                  //   // ref.read(screensListProvider.notifier).state = screens;
+                  // }
+                  // else if(completedTasks.isEmpty){
+                  //   screensState[2] = AnimatedScreen();
+                  //   // ref.read(screensListProvider.notifier).state = screens;
+                  // }
+                },
+                
+                tabs: [
+                  GButton(
+                    padding: EdgeInsets.all(10),
+                    gap:5,
+                    icon: Icons.padding_outlined,
+                    text: "Pended",
+                    ),
+                  GButton(
+                    padding: EdgeInsets.all(10),
+                    gap:5,
+                    icon: Icons.note_alt_outlined,
+                    text: "All",
+                    ),
+                  GButton(
+                    padding: EdgeInsets.all(10),
+                    gap:5,
+                    icon: Icons.done_outline_rounded,
+                    text: "Done",
+                    ),
+                  GButton(
+                    padding: EdgeInsets.all(10),
+                    gap:5,
+                    icon: Icons.notes_outlined,
+                    text: "Notes",
+                    )
+                ]
+                ),
+            ),
+          ),
+          
+        ],
+      ),
+      floatingActionButton: addButton(context,ref),
+    );
+  }
+}
