@@ -1,4 +1,4 @@
-# Todo App
+# Taskly
 
 A modern and lightweight Todo application built with Flutter, featuring local data persistence, state management with Riverpod, and support for both Light and Dark themes.
 
