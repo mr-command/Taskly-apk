@@ -11,6 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Flutter info
+        run: |
+          flutter --version
+          flutter doctor -v
+          cat android/local.properties || true
       - name: Checkout
         uses: actions/checkout@v4
 
