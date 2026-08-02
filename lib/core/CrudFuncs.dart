@@ -10,6 +10,15 @@ void addTask(String title,ref) {
 
 }
 
+
+void addNote(String title,ref,String content) {
+
+  final db = ref.read(dbProvider);
+
+  db.createNote(title,content);
+
+}
+
 // loadTasks(WidgetRef ref) async {
 
 //   final db = ref.read(dbProvider);

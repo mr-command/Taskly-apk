@@ -28,6 +28,9 @@ final lightTheme = ThemeData(
 
     surface: Color(0xFF1A1A1A),
     onSurface: Color.fromARGB(255, 255, 255, 255),
+
+    inversePrimary: Color.fromARGB(255, 231, 231, 231)
+    
   ),
 
   scaffoldBackgroundColor: Color.fromARGB(255, 255, 255, 255),
@@ -65,6 +68,9 @@ final darkTheme = ThemeData(
 
     surface: Color(0xFF2A2A2A),
     onSurface: Color(0xFFF5F5F5),
+
+
+    inversePrimary: Color.fromARGB(255, 41, 41, 41)
 
     
   ),

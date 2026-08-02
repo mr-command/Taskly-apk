@@ -6,7 +6,7 @@ import 'package:the_best_todo/core/providers.dart';
 
 
 
-Widget TaskCard(TaskData task,ref,context) {
+Widget TaskCard(TaskData task,ref,context,int index) {
   final db = ref.read(dbProvider);
   return Container(
     margin: EdgeInsets.all(10),
@@ -23,7 +23,7 @@ Widget TaskCard(TaskData task,ref,context) {
         Row(
           children: [
             deleteTaskButton(context,task.id,ref),
-            updateTaskButton(context),
+            updateTaskButton(context,ref,index),
             Checkbox(
               side: BorderSide(color: Theme.of(context).colorScheme.onPrimary),
               value: task.isCompleted,
@@ -35,6 +35,30 @@ Widget TaskCard(TaskData task,ref,context) {
             ),
           ],
         ),
+      ],
+    ),
+  );
+}
+
+
+Widget NoteCard(BuildContext context,String title,String content){
+  return Container(
+    width: MediaQuery.widthOf(context) * 0.8,
+    // height: 350,
+    padding: EdgeInsets.all(15),
+    margin: EdgeInsets.all(10),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(20),
+      color: Theme.of(context).colorScheme.inversePrimary
+    ),
+
+    child: Column(
+
+      children: [
+        Text(title,style: taskTitleTextSyle(context),),
+        SizedBox(height: 20,),
+        Text(content,style: tasksubTitleTextSyle(context),),
+
       ],
     ),
   );

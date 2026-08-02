@@ -18,7 +18,7 @@ class All extends ConsumerWidget {
               
               final task = tasks[index];
 
-              return TaskCard(task,ref,context);
+              return TaskCard(task,ref,context,task.id);
 
               
           },

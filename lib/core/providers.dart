@@ -24,7 +24,14 @@ final dbProvider = Provider<AppDatabase>((ref) {
 final tasksProvider = StreamProvider<List<TaskData>>((ref) {
   final db = ref.watch(dbProvider);
 
-  return db.select(db.task).watch();
+  return db.selectTasks();
+});
+
+
+final notesProvider = StreamProvider<List<NoteData>>((ref) {
+  final db = ref.watch(dbProvider);
+
+  return db.selectNotes();
 });
 
 final completedTasksProvider = Provider((ref) {

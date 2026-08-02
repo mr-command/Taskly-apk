@@ -19,6 +19,16 @@ TextStyle taskTitleTextSyle(BuildContext context){
   );
 }
 
+TextStyle tasksubTitleTextSyle(BuildContext context){
+  return TextStyle(
+    fontFamily: "tahoma",
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+    color: Theme.of(context).colorScheme.onPrimary
+  );
+}
+
+
 
 TextStyle labletaskTitleTextSyle(BuildContext context){
   return TextStyle(

@@ -23,11 +23,6 @@ class Todoscreen extends ConsumerWidget {
     // final tasksAsync = ref.watch(tasksProvider);
     final index = ref.watch(indexingScreens);
 
-    // final pendedTasks = ref.watch(pendingTasksProvider);
-    // final completedTasks = ref.watch(completedTasksProvider);
-    // final allTasks = ref.watch(tasksProvider);
-    // final screensState = ref.watch(screensListProvider);
-
     List<Widget> screens = [
       Pended(),
       All(),
@@ -81,19 +76,7 @@ class Todoscreen extends ConsumerWidget {
                 tabMargin: EdgeInsetsGeometry.only(left:10, right: 10),
                 onTabChange: (value) {
                   ref.read(indexingScreens.notifier).state = value;
-                  // ref.read(screensListProvider.notifier).state = screens;
-                  // if (pendedTasks.isEmpty) {
-                  //   screensState[0] = AnimatedScreen();
-                  //   // ref.read(screensListProvider.notifier).state = screens;
-                  // }
-                  // else if(pendedTasks.isEmpty && completedTasks.isEmpty){
-                  //   screensState[1] = AnimatedScreen();
-                  //   // ref.read(screensListProvider.notifier).state = screens;
-                  // }
-                  // else if(completedTasks.isEmpty){
-                  //   screensState[2] = AnimatedScreen();
-                  //   // ref.read(screensListProvider.notifier).state = screens;
-                  // }
+
                 },
                 
                 tabs: [
@@ -128,7 +111,9 @@ class Todoscreen extends ConsumerWidget {
           
         ],
       ),
-      floatingActionButton: addButton(context,ref),
+      floatingActionButton: index == 4
+      ? addTaskButton(context, ref)
+      : addNoteButton(context,ref)
     );
   }
 }

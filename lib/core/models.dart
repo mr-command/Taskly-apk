@@ -9,7 +9,14 @@ class Task extends Table {
   BoolColumn get isCompleted => boolean()();
 }
 
-@DriftDatabase(tables: [Task])
+
+class Note extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  TextColumn get title => text()();
+  TextColumn get content => text()();
+}
+
+@DriftDatabase(tables: [Task,Note])
 class AppDatabase extends _$AppDatabase {
   AppDatabase()
       : super(
@@ -20,7 +27,24 @@ class AppDatabase extends _$AppDatabase {
         );
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 2;
+
+  @override
+  MigrationStrategy get migration => MigrationStrategy(
+    onCreate: (m) async {
+      await m.createAll();
+    },
+
+    onUpgrade: (m, from, to) async {
+      if (from < 2) {
+        await m.createTable(note);
+      }
+    },
+  );
+
+
+
+  // ----------- Task ------------
 
   Future<int> createTask(String title) {
     return into(task).insert(
@@ -31,15 +55,15 @@ class AppDatabase extends _$AppDatabase {
     );
   }
 
-  Future<List<TaskData>> selectTasks() {
-    return select(task).get();
+  Stream<List<TaskData>> selectTasks() {
+    return select(task).watch();
   }
   Future<bool> updateTask(TaskData taskData) {
     return update(task).replace(taskData);
   }
 
-  Future<int> updateTitleTask(int id, String title) {
-    return (update(task)
+  Future<int> updateTitleTask(int id, String title) async {
+    return await (update(task)
           ..where((t) => t.id.equals(id)))
         .write(
       TaskCompanion(
@@ -54,5 +78,23 @@ class AppDatabase extends _$AppDatabase {
           ..where((t) => t.id.equals(id)))
         .go();
   }
+
+    // ----------- Note ------------
+
+  Future<int> createNote(String title,String content) {
+    return into(note).insert(
+      NoteCompanion.insert(
+        title: title,
+        content: content,
+      ),
+    );
+  }
+
+  Stream<List<NoteData>> selectNotes() {
+    return select(note).watch();
+  }
+
+
 }
+
 

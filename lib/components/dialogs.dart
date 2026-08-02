@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:the_best_todo/components/text_styles.dart';
 import 'package:the_best_todo/core/CrudFuncs.dart';
+import 'package:the_best_todo/core/providers.dart';
 
 Future<dynamic> showAddTaskDialog(BuildContext context,ref) {
   return showDialog(
@@ -107,8 +108,9 @@ Future<dynamic> showAddTaskDialog(BuildContext context,ref) {
   );
 }
 
-Future<dynamic> showEditTaskDialog(BuildContext context,ref) {
+Future<dynamic> showEditTaskDialog(BuildContext context,ref,int id) {
   return showDialog(
+    
     context: context,
     builder: (context) {
       final titlecontroller = TextEditingController();
@@ -188,15 +190,193 @@ Future<dynamic> showEditTaskDialog(BuildContext context,ref) {
                       },
                       child: Text('Cancel',style: btntaskTitleTextSyle(context),),
                     ),
+
+
+
                     SizedBox(width: 8),
+
+
+
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Theme.of(context).colorScheme.primary,
+                        minimumSize: Size(100, 40)
+                      ),
+                      onPressed: () async{
+                        // TODO: Save task logic
+                        
+                        final db = ref.read(dbProvider);
+
+                        final result = await db.updateTitleTask(id, titlecontroller.text.trim());
+                        debugPrint('Updated rows: $result');
+
+                        Navigator.pop(context);
+                      },
+                      child: Text('Apply',style: btntaskTitleTextSyle(context),),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    },
+  );
+}
+
+
+Future<dynamic> showAddNoteDialog(BuildContext context,ref) {
+  return showDialog(
+    
+    context: context,
+    builder: (context) {
+      final titlecontroller = TextEditingController();
+      final contentcontroller = TextEditingController();
+      return Dialog(              
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Material(           
+          color: Theme.of(context).scaffoldBackgroundColor,
+          borderRadius: BorderRadius.circular(20),
+          child: Padding(
+            padding: EdgeInsets.all(20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min, 
+              children: [
+                Text(
+                  "Edit Task",
+                  style: taskTitleTextSyle(context),
+                ),
+                SizedBox(height: 16),
+                TextField(
+                  controller: titlecontroller,
+                  style: labletaskTitleTextSyle(context),
+                  decoration: InputDecoration(
+                    
+                    labelText: 'note title',
+                    labelStyle: labletaskTitleTextSyle(context),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Theme.of(context).colorScheme.onPrimary,
+                        strokeAlign: 2,
+                        width: 2
+                        
+                      )
+                    ),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.grey,
+                        strokeAlign: 2,
+                        width: 2
+                        
+                      )
+                    ),
+                    disabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Theme.of(context).colorScheme.onPrimary,
+                        strokeAlign: 2,
+                        width: 2
+                        
+                      )
+                    ),
+                    border: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Theme.of(context).colorScheme.onPrimary,
+                        strokeAlign: 2,
+                        width: 2
+                        
+                      )
+                    ),
+                    contentPadding: EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 12,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 16),
+
+
+
+                TextField(
+                  controller: contentcontroller,
+                  style: labletaskTitleTextSyle(context),
+                  minLines: 5,
+                  maxLines: 8,
+                  decoration: InputDecoration(
+                    
+                    labelText: 'note title',
+                    labelStyle: labletaskTitleTextSyle(context),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Theme.of(context).colorScheme.onPrimary,
+                        strokeAlign: 2,
+                        width: 2
+                        
+                      )
+                    ),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Colors.grey,
+                        strokeAlign: 2,
+                        width: 2
+                        
+                      )
+                    ),
+                    disabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Theme.of(context).colorScheme.onPrimary,
+                        strokeAlign: 2,
+                        width: 2
+                        
+                      )
+                    ),
+                    border: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Theme.of(context).colorScheme.onPrimary,
+                        strokeAlign: 2,
+                        width: 2
+                        
+                      )
+                    ),
+                    contentPadding: EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 12,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 16,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Theme.of(context).colorScheme.primary,
                         minimumSize: Size(100, 40)
                       ),
                       onPressed: () {
+
+                      },
+                      child: Text('Cancel',style: btntaskTitleTextSyle(context),),
+                    ),
+
+
+
+                    SizedBox(width: 8),
+
+
+
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Theme.of(context).colorScheme.primary,
+                        minimumSize: Size(100, 40)
+                      ),
+                      onPressed: () async{
                         // TODO: Save task logic
-                        addTask(titlecontroller.text,ref);
+                        
+                        addNote(titlecontroller.text, ref, contentcontroller.text);                     
+                        
                         Navigator.pop(context);
                       },
                       child: Text('Apply',style: btntaskTitleTextSyle(context),),
