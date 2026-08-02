@@ -1,51 +1,23 @@
 pluginManagement {
     repositories {
-        // ─── Mirror های ایرانی ───────────────────────────────────────
-        maven { url = uri("https://maven.myket.ir") }
-        maven { url = uri("https://maven.devneeds.ir") }
-        maven { url = uri("https://gradle.iranrepo.ir") }
-        maven { url = uri("https://gradle.jamko.ir") }
-        maven { url = uri("https://en-mirror.ir") }
-        maven { url = uri("https://archive.ito.gov.ir/gradle/maven-plugin/") }
-
-        // ─── Mirror های چین (Aliyun) ─────────────────────────────────
-        maven { url = uri("https://maven.aliyun.com/repository/gradle-plugin") }
-        maven { url = uri("https://maven.aliyun.com/repository/google") }
-
-        // ─── منابع رسمی (Fallback) ────────────────────────────────────
-        google {
-            content {
-                includeGroupByRegex("com\\.android.*")
-                includeGroupByRegex("com\\.google.*")
-                includeGroupByRegex("androidx.*")
-            }
-        }
-        gradlePluginPortal()
+        google()
         mavenCentral()
+        gradlePluginPortal()
     }
 }
 
+plugins {
+    id("com.android.application") version "8.7.3" apply false
+    id("org.jetbrains.kotlin.android") version "2.1.0" apply false
+    id("dev.flutter.flutter-plugin-loader") version "1.0.0"
+}
+
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
 
     repositories {
-        // ─── Mirror های ایرانی ───────────────────────────────────────
-        maven { url = uri("https://maven.myket.ir") }
-        maven { url = uri("https://maven.devneeds.ir") }
-        maven { url = uri("https://gradle.iranrepo.ir") }
-        maven { url = uri("https://gradle.jamko.ir") }
-        maven { url = uri("https://en-mirror.ir") }
-        maven { url = uri("https://archive.ito.gov.ir/gradle/maven-plugin/") }
-
-        // ─── Mirror های چین (Aliyun) ─────────────────────────────────
-        maven { url = uri("https://maven.aliyun.com/repository/public") }
-        maven { url = uri("https://maven.aliyun.com/repository/central") }
-        maven { url = uri("https://maven.aliyun.com/repository/google") }
-
-        // ─── منابع رسمی (Fallback) ────────────────────────────────────
         google()
         mavenCentral()
-        maven { url = uri("https://jitpack.io") }
     }
 }
 
