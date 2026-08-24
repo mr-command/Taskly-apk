@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:the_best_todo/components/buttons.dart';
 import 'package:the_best_todo/components/text_styles.dart';
 import 'package:the_best_todo/core/models.dart';
@@ -41,25 +42,52 @@ Widget TaskCard(TaskData task,ref,context,int index) {
 }
 
 
-Widget NoteCard(BuildContext context,String title,String content){
-  return Container(
-    width: MediaQuery.widthOf(context) * 0.8,
-    // height: 350,
-    padding: EdgeInsets.all(15),
-    margin: EdgeInsets.all(10),
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(20),
-      color: Theme.of(context).colorScheme.inversePrimary
+Widget NoteCard(BuildContext context,String title,String content,WidgetRef ref, int id){
+  final db = ref.read(dbProvider);
+  return Dismissible(
+    direction: DismissDirection.endToStart,
+    key: ValueKey(id),
+    onDismissed: (direction) async {
+      if (direction == DismissDirection.endToStart) {
+        await db.deleteNote(id);
+      }
+
+      // return false;
+    },
+
+    background: Container(
+      margin: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(15),
+      alignment: Alignment.centerRight,
+      decoration: BoxDecoration(
+        color: Colors.deepOrange,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: const Icon(
+        Icons.delete,
+        color: Colors.white,
+      ),
     ),
 
-    child: Column(
-
-      children: [
-        Text(title,style: taskTitleTextSyle(context),),
-        SizedBox(height: 20,),
-        Text(content,style: tasksubTitleTextSyle(context),),
-
-      ],
+    child: Container(
+      width: MediaQuery.widthOf(context) * 0.8,
+      // height: 350,
+      padding: EdgeInsets.all(15),
+      margin: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: Theme.of(context).colorScheme.inversePrimary
+      ),
+    
+      child: Column(
+    
+        children: [
+          Text(title,style: taskTitleTextSyle(context),),
+          SizedBox(height: 20,),
+          Text(content,style: tasksubTitleTextSyle(context),),
+    
+        ],
+      ),
     ),
   );
 }

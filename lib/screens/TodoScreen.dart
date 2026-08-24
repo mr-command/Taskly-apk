@@ -111,7 +111,7 @@ class Todoscreen extends ConsumerWidget {
           
         ],
       ),
-      floatingActionButton: index == 4
+      floatingActionButton: index != 3
       ? addTaskButton(context, ref)
       : addNoteButton(context,ref)
     );

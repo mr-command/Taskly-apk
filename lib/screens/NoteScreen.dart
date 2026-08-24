@@ -19,8 +19,12 @@ class Notescreen extends ConsumerWidget {
             itemBuilder: (context, index) {
               
               final note = notes[index];
-
-              return NoteCard(context, note.title, note.content);
+              for (final note in notes) {
+                print(
+                  'NOTE => id: ${note.id}, title: ${note.title}',
+                );
+              }
+              return NoteCard(context, note.title, note.content,ref,note.id);
 
               
           },

@@ -35,7 +35,7 @@ Widget addNoteButton(BuildContext context,WidgetRef ref){
 Widget addTaskButton(BuildContext context,WidgetRef ref){
     return IconButton(
       hoverColor: Theme.of(context).colorScheme.secondaryContainer,
-      onPressed: () => showAddNoteDialog(context,ref),
+      onPressed: () => showAddTaskDialog(context,ref),
       icon: Icon(Icons.add),
       tooltip: "Add New task",
       style: IconButton.styleFrom(

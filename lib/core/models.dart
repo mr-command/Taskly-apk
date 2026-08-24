@@ -95,6 +95,17 @@ class AppDatabase extends _$AppDatabase {
   }
 
 
+  Future<int> deleteNote(int id) async {
+    final result = await (delete(note)
+          ..where((n) => n.id.equals(id)))
+        .go();
+
+    print('DELETED NOTE ID: $id | ROWS: $result');
+
+    return result;
+  }
+
+
 }
 
 
