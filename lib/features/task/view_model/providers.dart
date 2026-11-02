@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
-import 'package:the_best_todo/core/models.dart';
-import 'package:the_best_todo/screens/AllTasks.dart';
-import 'package:the_best_todo/screens/DoneTasks.dart';
-import 'package:the_best_todo/screens/NoteScreen.dart';
-import 'package:the_best_todo/screens/PendedTasks.dart';
+import 'package:the_best_todo/features/task/model/models.dart';
+import 'package:the_best_todo/features/task/view/screens/AllTasks.dart';
+import 'package:the_best_todo/features/task/view/screens/DoneTasks.dart';
+import 'package:the_best_todo/features/task/view/screens/NoteScreen.dart';
+import 'package:the_best_todo/features/task/view/screens/PendedTasks.dart';
 
 
 

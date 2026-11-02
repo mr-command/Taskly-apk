@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:the_best_todo/components/text_styles.dart';
-import 'package:the_best_todo/core/CrudFuncs.dart';
-import 'package:the_best_todo/core/providers.dart';
+import 'package:the_best_todo/features/task/view/components/text_styles.dart';
+import 'package:the_best_todo/features/task/view_model/CrudFuncs.dart';
+import 'package:the_best_todo/features/task/view_model/providers.dart';
+
 
 Future<dynamic> showAddTaskDialog(BuildContext context,ref) {
   return showDialog(

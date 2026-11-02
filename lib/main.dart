@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:the_best_todo/core/providers.dart';
-import 'package:the_best_todo/screens/TodoScreen.dart';
-import 'package:the_best_todo/themes/app_theme.dart';
+import 'package:the_best_todo/features/task/view_model/providers.dart';
+import 'package:the_best_todo/features/task/view/screens/TodoScreen.dart';
+import 'package:the_best_todo/core/themes/app_theme.dart';
 // import 'hive_registrar.g.dart';
 
 void main() async {

@@ -1,15 +1,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:the_best_todo/components/cards.dart';
-import 'package:the_best_todo/core/providers.dart';
+import 'package:the_best_todo/features/task/view/components/cards.dart';
+import 'package:the_best_todo/features/task/view_model/providers.dart';
 
-class Done extends ConsumerWidget {
-  const Done({super.key});
+class Pended extends ConsumerWidget {
+  const Pended({super.key});
 
   @override
   Widget build(BuildContext context,WidgetRef ref) {
-    final tasks = ref.watch(completedTasksProvider);
+    final tasks = ref.watch(pendingTasksProvider);
     return  ListView.builder(
         itemCount: tasks.length,
         itemBuilder: (context, index) {
@@ -17,6 +17,7 @@ class Done extends ConsumerWidget {
           final task = tasks[index];
 
           return TaskCard(task,ref,context,task.id);
+          
       },
     );         
   }

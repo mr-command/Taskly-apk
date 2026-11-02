@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:the_best_todo/components/buttons.dart';
-import 'package:the_best_todo/components/text_styles.dart';
-import 'package:the_best_todo/core/models.dart';
-import 'package:the_best_todo/core/providers.dart';
+import 'package:the_best_todo/features/task/model/models.dart';
+import 'package:the_best_todo/features/task/view/components/buttons.dart';
+import 'package:the_best_todo/features/task/view/components/text_styles.dart';
+import 'package:the_best_todo/features/task/view_model/providers.dart';
 
 
 

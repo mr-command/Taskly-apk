@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:the_best_todo/components/cards.dart';
-import 'package:the_best_todo/core/providers.dart';
+import 'package:the_best_todo/features/task/view/components/cards.dart';
+import 'package:the_best_todo/features/task/view_model/providers.dart';
 
 
 

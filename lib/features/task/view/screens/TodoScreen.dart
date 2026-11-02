@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-// import 'package:hive_ce_flutter/hive_flutter.dart';
-import 'package:the_best_todo/components/buttons.dart';
-import 'package:the_best_todo/components/text_styles.dart';
-// import 'package:the_best_todo/core/HiveDataBase.dart';
-import 'package:the_best_todo/core/providers.dart';
-import 'package:the_best_todo/screens/AllTasks.dart';
-import 'package:the_best_todo/screens/AnimatedScreen.dart';
-import 'package:the_best_todo/screens/DoneTasks.dart';
-import 'package:the_best_todo/screens/NoteScreen.dart';
-import 'package:the_best_todo/screens/PendedTasks.dart';
+import 'package:the_best_todo/features/task/view/components/buttons.dart';
+import 'package:the_best_todo/features/task/view/components/text_styles.dart';
+import 'package:the_best_todo/features/task/view/screens/AllTasks.dart';
+import 'package:the_best_todo/features/task/view/screens/DoneTasks.dart';
+import 'package:the_best_todo/features/task/view/screens/NoteScreen.dart';
+import 'package:the_best_todo/features/task/view/screens/PendedTasks.dart';
+import 'package:the_best_todo/features/task/view_model/providers.dart';
 
 
 class Todoscreen extends ConsumerWidget {

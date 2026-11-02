@@ -1,6 +1,8 @@
-import 'package:the_best_todo/core/providers.dart';
+
 
 // import 'package:drift/drift.dart';
+
+import 'package:the_best_todo/features/task/view_model/providers.dart';
 
 void addTask(String title,ref) {
 

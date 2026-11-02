@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:the_best_todo/core/providers.dart';
+import 'package:the_best_todo/features/task/view_model/providers.dart';
 import 'package:the_best_todo/main.dart';
 
 void main() {
