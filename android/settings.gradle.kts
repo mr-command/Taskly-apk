@@ -11,6 +11,8 @@ pluginManagement {
     includeBuild("$flutterSdkPath/packages/flutter_tools/gradle")
 
     repositories {
+        // dl.google.com is blocked on this network: mirror Google Maven first.
+        maven("https://maven.aliyun.com/repository/google")
         google()
         mavenCentral()
         gradlePluginPortal()
