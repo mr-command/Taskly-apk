@@ -19,20 +19,44 @@ final weeklyProgressProvider = Provider<(int, int, int)>((ref) {
 
   final tasks = ref.watch(watchTasksProvider).value ?? [];
   final createdThisWeek = tasks
-      .where((t) =>
-          DateTime.fromMillisecondsSinceEpoch(t.createdAt).isAfter(weekStart))
+      .where(
+        (t) =>
+            DateTime.fromMillisecondsSinceEpoch(t.createdAt).isAfter(weekStart),
+      )
       .length;
   final completedThisWeek = tasks
-      .where((t) =>
-          t.completedAt != null &&
-          DateTime.fromMillisecondsSinceEpoch(t.completedAt!)
-              .isAfter(weekStart))
+      .where(
+        (t) =>
+            t.completedAt != null &&
+            DateTime.fromMillisecondsSinceEpoch(
+              t.completedAt!,
+            ).isAfter(weekStart),
+      )
       .length;
 
-  final percent =
-      createdThisWeek == 0 ? 0 : (completedThisWeek * 100 / createdThisWeek).round();
+  final percent = createdThisWeek == 0
+      ? 0
+      : (completedThisWeek * 100 / createdThisWeek).round();
 
   return (completedThisWeek, createdThisWeek, percent);
+});
+
+/// Every day that has at least one completed task, keyed by local date.
+/// Backed by the task stream, so completing a task immediately lights up
+/// its square in the contribution graph.
+final completionHeatmapProvider = Provider<Map<DateTime, int>>((ref) {
+  final tasks = ref.watch(watchTasksProvider).value ?? [];
+  final counts = <DateTime, int>{};
+
+  for (final task in tasks) {
+    if (task.completedAt == null) continue;
+    final day = _startOfDay(
+      DateTime.fromMillisecondsSinceEpoch(task.completedAt!),
+    );
+    counts[day] = (counts[day] ?? 0) + 1;
+  }
+
+  return counts;
 });
 
 /// Completions grouped per day for the last 7 days (oldest first).
@@ -67,23 +91,23 @@ final weeklyTrendDeltaProvider = Provider<int>((ref) {
   final thisWeek = buckets.fold<int>(0, (sum, b) => sum + b.count);
 
   final tasks = ref.watch(watchTasksProvider).value ?? [];
-  final lastWeekStart =
-      _startOfDay(DateTime.now().subtract(const Duration(days: 13)));
+  final lastWeekStart = _startOfDay(
+    DateTime.now().subtract(const Duration(days: 13)),
+  );
   final lastWeekEnd = lastWeekStart.add(const Duration(days: 6, hours: 23));
-  final lastWeek = tasks
-      .where((t) {
-        if (t.completedAt == null) return false;
-        final d = DateTime.fromMillisecondsSinceEpoch(t.completedAt!);
-        return d.isAfter(lastWeekStart) && d.isBefore(lastWeekEnd);
-      })
-      .length;
+  final lastWeek = tasks.where((t) {
+    if (t.completedAt == null) return false;
+    final d = DateTime.fromMillisecondsSinceEpoch(t.completedAt!);
+    return d.isAfter(lastWeekStart) && d.isBefore(lastWeekEnd);
+  }).length;
 
   return thisWeek - lastWeek;
 });
 
 /// (id, name, color, openCount) sorted descending, only used categories.
-final categoryDistributionProvider =
-    Provider<List<(int, String, int, int)>>((ref) {
+final categoryDistributionProvider = Provider<List<(int, String, int, int)>>((
+  ref,
+) {
   final categories = ref.watch(watchCategoriesProvider).value ?? [];
   final open = ref.watch(openTasksProvider);
 
