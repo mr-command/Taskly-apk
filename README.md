@@ -1,17 +1,13 @@
 # Taskly
 
-A modern and lightweight Todo application built with Flutter, featuring local data persistence, state management with Riverpod, and support for both Light and Dark themes.
+A modern and lightweight Todo Android application built with Flutter, featuring local data persistence, state management with Riverpod, and support for both Light and Dark themes.
 
 ## Features
 
-* ✅ Create, edit, and delete tasks
-* 📌 Mark tasks as completed
-* 💾 Offline-first local storage using Drift
-* ⚡ Reactive state management with Riverpod
-* 🌙 Dark Mode support
-* ☀️ Light Mode support
-* 🎨 Clean and responsive UI
-* 📱 Cross-platform Flutter application
+* CRUD tasks
+* CRUD category with customable Icons and colors
+* CRUD Notes
+* contribute chart
 
 ## Tech Stack
 
@@ -20,62 +16,8 @@ A modern and lightweight Todo application built with Flutter, featuring local da
 * Drift (SQLite)
 * Material Design 3
 
-## Screenshots
-
-| Light Theme         | Dark Theme          |
-| ------------------- | ------------------- |
-| ![Light Theme](screenshots/lightTheme.png) | ![Dark Theme](screenshots/darkTheme.png) |
-
-
-## Getting Started
-
-### Prerequisites
-
-* Flutter SDK
-* Dart SDK
-
-### Installation
-
-1. Clone the repository
-
-```bash
-git clone https://github.com/mr-command/todoApp.git
-```
-
-2. Navigate to the project directory
-
-```bash
-cd todoApp
-```
-
-3. Install dependencies
-
-```bash
-flutter pub get
-```
-
-4. Run the application
-
-```bash
-flutter run
-```
-
-## State Management
-
-This project uses Riverpod for scalable and maintainable state management.
-
-## Local Database
-
-Drift is used as the local database layer, providing:
-
-* Type-safe SQL queries
-* Reactive UI
-* SQLite persistence
-* Code generation support
 
 ## Theme Support
-
-The application automatically supports:
 
 * Light Theme
 * Dark Theme
@@ -83,10 +25,7 @@ The application automatically supports:
 
 ## Future Improvements
 
-* Task categories
-* Due dates
 * Task search
-* Task filtering
 * Backup & restore
 * Notifications
 
