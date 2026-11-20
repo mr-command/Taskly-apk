@@ -1,4 +1,12 @@
 
+
+
+# Taskly
+
+A modern and lightweight Todo Android application built with Flutter, featuring local data persistence, state management with Riverpod, and support for both Light and Dark themes.
+
+
+
 <p align="center">
   <img src="https://img.shields.io/badge/Flutter-Framework-02569B?logo=flutter" />
   <img src="https://img.shields.io/badge/Dart-Language-0175C2?logo=dart" />
@@ -8,10 +16,6 @@
   <img src="https://img.shields.io/github/issues/mr-command/Taskly-apk" />
   <img src="https://img.shields.io/github/last-commit/mr-command/Taskly-apk" />
 </p>
-
-# Taskly
-
-A modern and lightweight Todo Android application built with Flutter, featuring local data persistence, state management with Riverpod, and support for both Light and Dark themes.
 
 
 
