@@ -183,7 +183,7 @@ class _CategoryEditSheetState extends ConsumerState<_CategoryEditSheet> {
                   ),
                   const SizedBox(width: 8),
                   Text(
-                    'Tasks above fall back to\u0305 \u0305No category',
+                   '<-- delete category',
                     style: theme.textTheme.bodySmall
                         ?.copyWith(color: colors.textSecondary),
                   ),
@@ -199,7 +199,7 @@ class _CategoryEditSheetState extends ConsumerState<_CategoryEditSheet> {
                   style: FilledButton.styleFrom(
                     backgroundColor: colors.accent,
                     foregroundColor: colors.onAccent,
-                    fixedSize: Size(_isEdit ? 72 : 96, 44),
+                    // fixedSize: Size(_isEdit ? 72 : 96, 44),
                   ),
                   child: Text(_isEdit ? 'Save' : 'Add'),
                 ),

@@ -183,11 +183,14 @@ class _ContributionGraphState extends State<ContributionGraph> {
     ];
   }
 
-  int _levelFor(int count, int maxCount) {
-    if (count <= 0 || maxCount <= 0) return 0;
-    return ((count * 4) / maxCount).ceil().clamp(1, 4);
-  }
+  int _levelFor(int count) {
+    if(count <= 0) return 0;
+    if(count <= 1) return 1;
+    if(count <= 2) return 2;
+    if(count <= 3) return 3;
 
+    return 4;
+  }
   /// Weeks that start a new month, paired with the width they can occupy
   /// before the next label so labels never overlap.
   List<_MonthLabel> _monthLabels(DateTime windowStart, List<DateTime> days) {
@@ -289,7 +292,7 @@ class _ContributionGraphState extends State<ContributionGraph> {
       return SizedBox(width: step, height: step);
     }
 
-    final level = _levelFor(count, maxCount);
+    final level = _levelFor(count);
 
     return SizedBox(
       width: step,
