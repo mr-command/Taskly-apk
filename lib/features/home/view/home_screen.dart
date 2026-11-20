@@ -149,8 +149,13 @@ class _OverviewSection extends ConsumerWidget {
       padding: const EdgeInsets.all(16),
       margin: EdgeInsets.only(right:16),
       decoration: BoxDecoration(
-        border: Border.all(color: colors.border),
+        color: colors.onAccent,
+        // border: Border.all(color: colors.border),
         borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+
+          BoxShadow(blurRadius: 20,color: colors.accent.withAlpha(15),spreadRadius: 5)
+        ]
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -322,8 +327,13 @@ class _AttentionRowState extends ConsumerState<_AttentionRow> {
         child: Container(
           padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
           decoration: BoxDecoration(
-            color: colors.surfaceMuted,
+            
+            color: colors.onAccent,
             borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+
+          BoxShadow(blurRadius: 20,color: colors.accent.withAlpha(5),spreadRadius: 0)
+        ]
           ),
           child: IntrinsicHeight(
             child: Row(

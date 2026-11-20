@@ -216,7 +216,12 @@ class _InsightCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        border: Border.all(color: colors.border),
+        color: colors.onAccent,
+        // border: Border.all(color: colors.border),
+        boxShadow: [
+
+          BoxShadow(blurRadius: 10,color: colors.accent.withAlpha(15))
+        ],
         borderRadius: BorderRadius.circular(10),
       ),
       child: child,
