@@ -145,7 +145,9 @@ class _OverviewSection extends ConsumerWidget {
     final weekDone = ref.watch(weekCompletionsProvider);
 
     return Container(
+      // width: MediaQuery.widthOf(context) * 0.8,
       padding: const EdgeInsets.all(16),
+      margin: EdgeInsets.only(right:16),
       decoration: BoxDecoration(
         border: Border.all(color: colors.border),
         borderRadius: BorderRadius.circular(10),
@@ -162,7 +164,7 @@ class _OverviewSection extends ConsumerWidget {
                       ?.copyWith(fontWeight: FontWeight.w600),
                 ),
               ),
-              CountUpText(value: percent, style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600)),
+              Text(" $percent%", style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600)),
             ],
           ),
           const SizedBox(height: 10),
